@@ -17,11 +17,11 @@ export class AuthService {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name)
 
-            if(userAccount){
+            if (userAccount) {
                 // return userAccount call another method 
-                return this.login({email, password})
+                return this.login({ email, password })
 
-            }else{
+            } else {
                 return userAccount
             }
         } catch (error) {
@@ -29,7 +29,7 @@ export class AuthService {
         }
     }
 
-    async login({email, password}){
+    async login({ email, password }) {
         try {
             return await this.account.createEmailPasswordSession(email, password)
         } catch (error) {
@@ -37,17 +37,21 @@ export class AuthService {
         }
     }
 
-    async getCurrentUser(){
-        try {
-            return await this.account.get()
-        } catch (error) {
-            throw error
-        }
+    // check this function again 
 
-        return null;
+    async getCurrentUser() {
+        try {
+            return await this.account.get();
+        } catch (error) {
+            console.error(error);
+            return null; // now reachable
+        }
     }
 
-    async logout(){
+
+
+
+    async logout() {
         try {
             await this.account.deleteSessions()
         } catch (error) {

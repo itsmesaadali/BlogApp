@@ -78,7 +78,7 @@ export class Service {
         }
     }
 
-    async listPosts(queries = [Query.equal("stauts", true)]) {
+    async getPosts(queries = [Query.equal("stauts", true)]) {
         try {
 
             return await this.databases.listDocuments(
